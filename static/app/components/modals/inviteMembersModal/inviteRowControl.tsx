@@ -127,6 +127,7 @@ function InviteRowControl({
         value={role}
         roles={roleOptions}
         disableUnallowed={roleDisabledUnallowed}
+        isMemberInvite={true}
         onChange={roleOption => {
           onChangeRole(roleOption);
           if (!isTeamRolesAllowedForRole(roleOption.value)) {

@@ -19,9 +19,10 @@ type Props = Omit<ControlProps<OptionType>, 'onChange' | 'value'> & {
    */
   onChange?: (value: OptionType) => void;
   value?: string | null;
+  isMemberInvite?: boolean;
 };
 
-function RoleSelectControl({roles, disableUnallowed, ...props}: Props) {
+function RoleSelectControl({roles, disableUnallowed, isMemberInvite = false, ...props}: Props) {
   return (
     <SelectControl
       options={roles
@@ -31,7 +32,7 @@ function RoleSelectControl({roles, disableUnallowed, ...props}: Props) {
             ({
               value: r.id,
               label: r.name,
-              disabled: disableUnallowed && !r.isAllowed,
+              disabled: disableUnallowed && !r.isAllowed && !(isMemberInvite && r.id === 'member'),
               details: <Details>{r.desc}</Details>,
             }) as OptionType
         )}
